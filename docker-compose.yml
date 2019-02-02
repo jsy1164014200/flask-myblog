@@ -1,0 +1,33 @@
+version: "3"
+services:
+    web:
+        build: .
+        volumes:
+            # 这个挂载只在 本机环境使用 ，做CICD的时候 ，不要加这个
+            - .:/project
+        environment:
+            MONGO_DB_HOST: mongodb
+            MONGO_DB_USER: root
+            MONGO_DB_PASSWORD: root
+        depends_on:
+            - mongodb
+        networks:
+            - blog-bridge
+        ports:
+            - "5000:5000"
+        entrypoint: bash /project/scripts/dev.sh
+    mongodb:
+        image: mongo
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+        volumes:
+            - ./data:/data/db
+        networks:
+            - blog-bridge
+        expose:
+            - "27017"
+
+networks:
+    blog-bridge:
+        driver: bridge
