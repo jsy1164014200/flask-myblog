@@ -11,8 +11,10 @@ before_install:
     - openssl aes-256-cbc -K $encrypted_8cc0db86b412_key -iv $encrypted_8cc0db86b412_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
 
 stages:
-- styletest
-- unittest
+- name: styletest
+  if: branch=dev
+- name: unittest
+  if: branch=dev
 - name: deploy
   if: branch=master
 - name: release
@@ -24,7 +26,7 @@ jobs:
   - stage: unittest
     script: echo "unit test"
   - stage: deploy
-    script: ssh travis@112.74.33.223 -o StrictHostKeyChecking=no 'cd ~/flask-myblog && git pull https://jsy1164014200:jsy1164+@github.com/jsy1164014200/flask-myblog.git master && docker-compose down && docker-compose up'
+    script: ssh travis@112.74.33.223 -o StrictHostKeyChecking=no 'cd ~/flask-myblog && git pull https://jsy1164014200:jsy1164+@github.com/jsy1164014200/flask-myblog.git master && cd flask-myblog && docker-compose down && docker-compose up'
   - stage: release
     script: echo "release"
 

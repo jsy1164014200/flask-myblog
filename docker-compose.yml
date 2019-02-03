@@ -3,7 +3,6 @@ services:
     web:
         build: .
         volumes:
-            # 这个挂载只在 本机环境使用 ，做CICD的时候 ，不要加这个
             - .:/project
         environment:
             MONGO_DB_HOST: mongodb
