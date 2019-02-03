@@ -1,25 +1,25 @@
 language: python
-services: 
-    - docker 
+services:
+- docker
 python:
-    - "3.6"
-
+- '3.6'
 stages:
-    - styletest
-    - unittest
-    - name: deploy
-      if: branch=master
-    - name: release
-      if: branch=master
-
+- styletest
+- unittest
+- name: deploy
+  if: branch=master
+- name: release
+  if: branch=master
 jobs:
-    include:
-        - stage: styletest
-          script: echo "style test"
-        - stage: unittest
-          script: echo "unit test"
-        - stage: deploy
-          script: echo "deploy"
-        - stage: release
-          script: echo "release"
-    
+  include:
+  - stage: styletest
+    script: echo "style test"
+  - stage: unittest
+    script: echo "unit test"
+  - stage: deploy
+    script: echo "deploy"
+  - stage: release
+    script: echo "release"
+before_install:
+- openssl aes-256-cbc -K $encrypted_8cc0db86b412_key -iv $encrypted_8cc0db86b412_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
