@@ -1,6 +1,15 @@
 language: python
 services: 
     - docker 
-install: true
+
+env:
+    - DOCKER_COMPOSE_VERSION=1.24.0
+before_install: 
+    - echo "下载依赖"
+install: echo "begin install"
+before_script:
+    - echo "开始执行脚本"
 script:
-    - docker-compose up
+    - echo "style test"
+    - echo "单元测试"
+    
