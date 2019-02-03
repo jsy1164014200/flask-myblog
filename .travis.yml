@@ -1,0 +1,25 @@
+language: python
+services: 
+    - docker 
+python:
+    - "3.6"
+
+stages:
+    - styletest
+    - unittest
+    - name: deploy
+      if: branch=master
+    - name: release
+      if: branch=master
+
+jobs:
+    include:
+        - stage: styletest
+          script: echo "style test"
+        - stage: unittest
+          script: echo "unit test"
+        - stage: deploy
+          script: echo "deploy"
+        - stage: release
+          script: echo "release"
+    
