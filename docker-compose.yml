@@ -2,9 +2,9 @@ version: "3"
 services:
     web:
         build: .
-        #       volumes:
+        volumes:
             # 这个挂载只在 本机环境使用 ，做CICD的时候 ，不要加这个
-            #    - .:/project
+            - .:/project
         environment:
             MONGO_DB_HOST: mongodb
             MONGO_DB_USER: root
@@ -25,8 +25,6 @@ services:
             - ./data:/data/db
         networks:
             - blog-bridge
-        expose:
-            - "27017"
 
 networks:
     blog-bridge:
