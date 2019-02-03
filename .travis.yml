@@ -7,8 +7,10 @@ python:
 stages:
     - styletest
     - unittest
-    - deploy
-    - release
+    - name: deploy
+      if: branch=master
+    - name: release
+      if: branch=master
 
 jobs:
     include:
