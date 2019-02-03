@@ -8,7 +8,7 @@ addons:
     ssh_known_hosts:
         - 112.74.33.223   
 before_install:
-    - openssl aes-256-cbc -K $encrypted_8cc0db86b412_key -iv $encrypted_8cc0db86b412_iv -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+    - openssl aes-256-cbc -K $encrypted_8cc0db86b412_key -iv $encrypted_8cc0db86b412_iv -in id_rsa.enc -out ~/.ssh/id_rsa -d
 
 stages:
 - styletest
