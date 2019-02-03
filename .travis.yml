@@ -21,6 +21,7 @@ jobs:
   - stage: release
     script: echo "release"
 before_install:
+- mkdir ~\/.ssh && toch ~\/.ssh/id_rsa
 - openssl aes-256-cbc -K $encrypted_8cc0db86b412_key -iv $encrypted_8cc0db86b412_iv
   -in id_rsa.enc -out ~\/.ssh/id_rsa -d
 
