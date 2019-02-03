@@ -24,7 +24,7 @@ jobs:
   - stage: unittest
     script: echo "unit test"
   - stage: deploy
-    script: ssh travis@112.74.33.223 -o StrictHostKeyChecking=no 'cd ~/flask-blog && git pull && docker-compose up'
+    script: ssh travis@112.74.33.223 -o StrictHostKeyChecking=no 'cd ~/flask-myblog && git pull && docker-compose up'
   - stage: release
     script: echo "release"
 
